@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Telegram...</title>
+    
+    <!-- 1. Import the Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <script>
+        // Replace with your actual channel link
+        const channelLink = "https://t.me/+A2TXYvZZEohiMmNl";
+
+        window.onload = function() {
+            setTimeout(function() {
+                openChannel();
+            }, 1000); // Redirects automatically after 1 second
+        }
+        
+        // 2. Function to handle the redirect safely
+        function openChannel() {
+            // Check if the script is running inside a Telegram Mini App
+            if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) {
+                // Use the native Mini App method to open the channel
+                window.Telegram.WebApp.openTelegramLink(channelLink);
+            } else {
+                // Fallback for standard web browsers
+                window.location.href = channelLink;
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .telegram-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #0088cc;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .telegram-btn:hover {
+            background-color: #006699;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Redirecting...</h2>
+        <p>You are being redirected to our Telegram Channel.</p>
+        <p>If nothing happens, click the button below:</p>
+        
+        <!-- Changed from <a> tag to a <button> to ensure the JS function fires -->
+        <button onclick="openChannel()" class="telegram-btn">Open Telegram</button>
+    </div>
+
+</body>
+</html>
